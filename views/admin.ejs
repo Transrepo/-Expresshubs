@@ -1,0 +1,95 @@
+<!-- views/admin.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <% if (error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+        <h2>Tracking Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tracking Number</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Product Name</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Quantity</th>
+                    <th>Weight</th>
+                    <th>Width</th>
+                    <th>Height</th>
+                    <th>Current Location</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% trackings.forEach(tracking => { %>
+                    <tr>
+                        <td><%= tracking.trackingNumber %></td>
+                        <td><%= tracking.name %></td>
+                        <td><%= tracking.email %></td>
+                        <td><%= tracking.phone %></td>
+                        <td><%= tracking.productName %></td>
+                        <td><%= tracking.origin %></td>
+                        <td><%= tracking.destination %></td>
+                        <td><%= tracking.quantity || 'N/A' %></td>
+                        <td><%= tracking.weight || 'N/A' %></td>
+                        <td><%= tracking.width || 'N/A' %></td>
+                        <td><%= tracking.height || 'N/A' %></td>
+                        <td><%= tracking.currentLocation %></td>
+                        <td><%= tracking.status %></td>
+                        <td>
+                            <a href="/siteOwnerLink/edit-tracking/<%= tracking.trackingNumber %>">Edit</a>
+                            <form action="/siteOwnerLink/delete-tracking/<%= tracking.trackingNumber %>" method="POST" style="display: inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <h2>Contact Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Submitted At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% contacts.forEach(contact => { %>
+                    <tr>
+                        <td><%= contact.name %></td>
+                        <td><%= contact.email %></td>
+                        <td><%= contact.phone %></td>
+                        <td><%= contact.message %></td>
+                        <td><%= new Date(contact.createdAt).toLocaleString() %></td>
+                        <td>
+                            <a href="/siteOwnerLink/edit-contact/<%= contact._id %>">Edit</a>
+                            <form action="/siteOwnerLink/delete-contact/<%= contact._id %>" method="POST" style="display: inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <p><a href="/">Back to Home</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="container-fluid">
+  <div class="row">
+  <%- include('../partials/sidebar.ejs') %>
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Editing: <%=  quote.fullName %></h1>
+    <div class="btn-toolbar mb-2 mb-md 0">
+      <div class="btn-group me-2">
+        <button class="btn btn-sm btn-outline-secondary">?</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col py-3">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/adminRoutes">Dashboard</a></li>
+            <li class="breadcrumb-item active"><%=  quote.fullName %></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col text-end fw-lighter">
+        <b>Last Updated: <%= new Date(quote.updatedAt).toUTCString()  %></b>
+        <b>deliveryId:</b> <%= quote._id %>
+      </div>
+    </div>
+  
+  </div>
+  
+  <form action="/edit/<%=quote._id %>?_method=PUT" method="POST">
+  
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="fullName">Full Name</label>
+        <input type="text" class="form-control" id="fullName" name="fullName" value="<%=  quote.fullName %>" placeholder="Full Name" required>
+      </div>
+  
+      <div class="col">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email" value="<%=  quote.email %>" placeholder="Email" required>
+      </div>
+    </div>
+  
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="tel">Telephone</label>
+        <input type="text" class="form-control" id="tel" name="tel" value="<%=  quote.tel %>" placeholder="Telephone" required>
+      </div>
+  
+      <div class="col">
+        <label for="cargo">Cargo Type</label>
+        <input type="text" class="form-control" id="cargo" name="cargo" value="<%=  quote.cargo %>" placeholder="Cargo Type" required>
+      </div>
+    </div>
+
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="orignCountry">Country Of origin</label>
+        <input type="text" class="form-control" id="orignCountry" name="orignCountry" value="<%=  quote.orignCountry %>" placeholder="Country Of origin" required>
+      </div>
+        <div class="col">
+          <label for="destination">Current Location</label>
+          <input type="text" class="form-control" id="currentPlace" name="currentPlace" value="<%=  quote.currentPlace %>" placeholder="Current Location" required>
+        </div>
+
+    </div>
+
+
+    <div class="row form-group mb-4">
+
+      <div class="col">
+        <label for="destination">Destination</label>
+        <input type="text" class="form-control" id="destination" name="destination" value="<%=  quote.destination %>" placeholder="destination" required>
+      </div>
+  
+      <div class="col">
+        <label for="quantity">Quantity</label>
+        <input type="text" class="form-control" id="quantity" name="quantity" value="<%=  quote.quantity %>" placeholder="quantity" required>
+      </div>
+    </div>
+
+
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="weight">Weight</label>
+        <input type="text" class="form-control" id="weight" name="weight" value="<%=  quote.weight %>" placeholder="Weight" required>
+      </div>
+  
+      <div class="col">
+        <label for="width">Width</label>
+        <input type="text" class="form-control" id="width" name="width" value="<%=  quote.width %>" placeholder="Width" required>
+      </div>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="height">Height</label>
+      <input type="text" class="form-control" id="height" name="height" value="<%=quote.height %>" placeholder="height" required>
+  </div>
+
+  
+    <div class="form-group mb-4">
+        <label for="details">Delivery Details</label>
+        <textarea class="form-control" name="details" id="details" cols="30" rows="6" placeholder="Customer Details"><%=  quote.details %></textarea>
+    </div>
+  
+    <div class="form-group mb-4">
+      <button type="submit" class="btn btn-primary">Update Delivery</button>
+  
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="deleteButton" data-bs-target="#deleteModal">Delete Delivery</button>
+  
+    </div>
+  
+  </form>
+  
+  
+  
+  <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">You are about to remove a customer delivery record.</div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            This will remove the customer record of <b class="fw-bold"><%=  quote.firstName %> <%=quote._id%></b><br/>
+            Are you sure?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <form action="/edit/<%= quote._id %>?_method=DELETE" method="POST" class="position-relative">
+            <button type="submit" class="btn btn-primary">Yes, Remove Customer Delivery</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</main> 
+
+</div>
+</div>
+
+<%- include('../partials/footer.ejs') %>

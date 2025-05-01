@@ -1,0 +1,45 @@
+<!-- views/edit.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit <%= type === 'tracking' ? 'Tracking' : 'Contact' %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit <%= type === 'tracking' ? 'Tracking' : 'Contact' %></h1>
+        <% if (type === 'tracking' && tracking) { %>
+            <form action="/siteOwnerLink/edit-tracking/<%= tracking.trackingNumber %>" method="POST" class="tracking-form">
+                <label for="currentLocation">Current Location:</label>
+                <input type="text" id="currentLocation" name="currentLocation" value="<%= tracking.currentLocation %>" required>
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="Processing" <%= tracking.status === 'Processing' ? 'selected' : '' %>>Processing</option>
+                    <option value="In Transit" <%= tracking.status === 'In Transit' ? 'selected' : '' %>>In Transit</option>
+                    <option value="Out for Delivery" <%= tracking.status === 'Out for Delivery' ? 'selected' : '' %>>Out for Delivery</option>
+                    <option value="Delivered" <%= tracking.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                    <option value="Delayed" <%= tracking.status === 'Delayed' ? 'selected' : '' %>>Delayed</option>
+                </select>
+                <label for="estimatedDelivery">Estimated Delivery:</label>
+                <input type="date" id="estimatedDelivery" name="estimatedDelivery" value="<%= tracking.estimatedDelivery ? tracking.estimatedDelivery.toISOString().split('T')[0] : '' %>">
+                <button type="submit">Update Tracking</button>
+            </form>
+        <% } else if (type === 'contact' && contact) { %>
+            <form action="/siteOwnerLink/edit-contact/<%= contact._id %>" method="POST" class="tracking-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="<%= contact.name %>" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<%= contact.email %>" required>
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" value="<%= contact.phone %>" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required><%= contact.message %></textarea>
+                <button type="submit">Update Contact</button>
+            </form>
+        <% } %>
+        <p><a href="/admin">Back to Admin Dashboard</a></p>
+    </div>
+</body>
+</html>

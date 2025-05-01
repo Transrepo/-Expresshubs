@@ -1,0 +1,126 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="container-fluid">
+  <div class="row">
+  <%- include('../partials/sidebar.ejs') %>
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Delivery Quotes</h1>
+    <div class="btn-toolbar mb-2 mb-md 0">
+      <div class="btn-group me-2">
+        <button class="btn btn-sm btn-outline-secondary">?</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col py-3">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/adminRoutes">Dashboard</a></li>
+            <li class="breadcrumb-item active">New Quote</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col text-end fw-lighter">
+        <b>DeliveryId</b>
+      </div>
+    </div>
+  
+  </div>
+  
+  
+  <form action="/add" method="POST">
+  
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="fullName">Full Name</label>
+        <input type="text" class="form-control" id="fullName" name="fullName" value="" placeholder="Full Name" required>
+      </div>
+  
+      <div class="col">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="" placeholder="email" required>
+      </div>
+    </div>
+  
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="tel">Telephone</label>
+        <input type="text" class="form-control" id="tel" name="tel" value="" placeholder="Telephone" required>
+      </div>
+  
+      <div class="col">
+        <label for="email">Cargo Type</label>
+        <input type="text" class="form-control" id="cargo" name="cargo" value="" placeholder="Cargo Type" required>
+      </div>
+    </div>
+
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="origin">Country of origin </label>
+        <input type="text" class="form-control" id="orignCountry" name="orignCountry" value="" placeholder="Country of origin" required>
+      </div>
+  
+      <div class="col">
+        <label for="current">Current Location</label>
+        <input type="text" class="form-control" id="currentPlace" name="currentPlace" value="" placeholder="Current Location" required>
+      </div>
+    </div>
+
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="destination">Destination</label>
+        <input type="text" class="form-control" id="destination" name="destination" value="" placeholder="Destination" required>
+      </div>
+  
+      <div class="col">
+        <label for="quantity">Quantity</label>
+        <input type="text" class="form-control" id="quantity" name="quantity" value="" placeholder="Quantity" required>
+      </div>
+    </div>
+
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="weight">Weight</label>
+        <input type="text" class="form-control" id="weight" name="weight" value="" placeholder="Weight" required>
+      </div>
+  
+      <div class="col">
+        <label for="width">Width</label>
+        <input type="text" class="form-control" id="width" name="width" value="" placeholder="Width" required>
+      </div>
+    </div>
+
+    <div class="row form-group mb-4">
+      <div class="col">
+        <label for="weight">Heigth</label>
+        <input type="text" class="form-control" id="height" name="height" value="" placeholder="Height" required>
+      </div>
+    </div>
+  
+    <div class="form-group mb-4">
+        <label for="details">Delivery update</label>
+        <textarea class="form-control" name="details" id="details" cols="30" rows="6" placeholder=" delivery update"></textarea>
+    </div>
+  
+    <div class="form-group mb-4">
+      <button type="submit" class="btn btn-primary">Add Delivery  Quote</button>
+    </div>
+  
+    
+  
+  </form>
+
+</main> 
+
+</div>
+</div>
+
+
+<%- include('../partials/footer.ejs') %>

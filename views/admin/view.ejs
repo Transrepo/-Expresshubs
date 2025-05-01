@@ -1,0 +1,138 @@
+<%- include('../partials/header.ejs') %>
+
+
+<div class="container-fluid">
+  <div class="row">
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2"><%= quote.fullName  %></h1>
+    <div class="btn-toolbar mb-2 mb-md 0">
+      <div class="btn-group me-2">
+        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col py-3">
+  
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active"><%= quote.fullName  %></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col text-end fw-lighter">
+        <b>DeliveryId:</b> <%= quote._id %>
+      </div>
+    </div>
+  
+  </div>
+  
+  <ul class="list-group">
+  
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Full Name:</b></div>
+        <div class="col"><%= quote.fullName %></div>
+      </div>
+    </li>
+
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Email:</b></div>
+        <div class="col"><%= quote.email %></div>
+      </div>
+    </li>
+  
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Tel:</b></div>
+        <div class="col"><%= quote.tel %></div>
+      </div>
+    </li>
+  
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Cargo Type:</b></div>
+        <div class="col"><%= quote.cargo %></div>
+      </div>
+    </li>
+
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Origin Country:</b></div>
+        <div class="col"><%= quote.orignCountry %></div>
+      </div>
+    </li>
+
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Current Location:</b></div>
+        <div class="col"><%= quote.currentPlace %></div>
+      </div>
+    </li>
+
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Destination</b></div>
+        <div class="col"><%= quote.destination %></div>
+      </div>
+    </li>
+
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Quantity</b></div>
+        <div class="col"><%= quote.quantity %></div>
+      </div>
+    </li>
+
+
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Weight</b></div>
+        <div class="col"><%= quote.weight %></div>
+      </div>
+    </li>
+
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Width</b></div>
+        <div class="col"><%= quote.width %></div>
+      </div>
+    </li>
+
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Height</b></div>
+        <div class="col"><%= quote.height %></div>
+      </div>
+    </li>
+  
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Notification:</b></div>
+        <div class="col"><%= quote.details %></div>
+      </div>
+    </li>
+  
+    <li class="list-group-item"> 
+      <div class="row">
+        <div class="col" style="max-width: 140px"> <b>Date Created:</b></div>
+        <div class="col"><%= quote.createdAt %></div>
+      </div>
+    </li>
+  
+  </ul>
+
+</main> 
+
+</div>
+</div>
+
+<%- include('../partials/footer.ejs') %>
