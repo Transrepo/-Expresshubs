@@ -1,0 +1,60 @@
+<!-- views/add-quote.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Quote</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Quote</h1>
+        <% if (error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+        <% if (success) { %>
+            <p class="success"><%= success %></p>
+        <% } %>
+        <div class="form-section">
+            <form action="/add" method="POST" class="tracking-form">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="productName">Product Name *</label>
+                <input type="text" id="productName" name="productName" required>
+
+                <label for="origin">Origin *</label>
+                <input type="text" id="origin" name="origin" required>
+
+                <label for="currentPlace">Current Location</label>
+                <input type="text" id="currentPlace" name="currentPlace" placeholder="Optional, defaults to Origin">
+
+                <label for="destination">Destination *</label>
+                <input type="text" id="destination" name="destination" required>
+
+                <label for="quantity">Quantity *</label>
+                <input type="text" id="quantity" name="quantity" required>
+
+                <label for="weight">Weight *</label>
+                <input type="text" id="weight" name="weight" required>
+
+                <label for="width">Width *</label>
+                <input type="text" id="width" name="width" required>
+
+                <label for="height">Height *</label>
+                <input type="text" id="height" name="height" required>
+
+                <button type="submit">Submit Quote</button>
+            </form>
+        </div>
+        <p><a href="/siteOwnerLink">Back to Admin Dashboard</a></p>
+    </div>
+</body>
+</html>

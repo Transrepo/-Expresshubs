@@ -176,6 +176,86 @@ io.on('connection', (socket) => {
     });
 });
 
+
+// Update the /add endpoint to handle Tracking schema only
+app.post('/add', async (req, res) => {
+    const { name, email, phone, productName, origin, currentPlace, destination, quantity, weight, width, height } = req.body;
+
+    // Validate inputs
+    if (!validateQuoteForm({ name, email, phone, productName, origin, destination, quantity, weight, width, height })) {
+        return res.render('add-quote', {
+            error: 'Invalid input. Please check required fields.',
+            success: null
+        });
+    }
+
+    const trackingNumber = generateTrackingNumber();
+
+    // Geocode locations
+    const originCoords = await geocodeLocation(origin);
+    const destCoords = await geocodeLocation(destination);
+
+    // Create tracking record
+    const tracking = new Tracking({
+        trackingNumber,
+        name,
+        email,
+        phone,
+        productName,
+        origin,
+        destination,
+        quantity,
+        weight,
+        width,
+        height,
+        currentLocation: currentPlace || origin,
+        coordinates: {
+            current: originCoords,
+            destination: destCoords
+        },
+        history: [{ location: currentPlace || origin, status: 'Processing' }]
+    });
+
+    try {
+        await tracking.save();
+        res.cookie('quoteSubmitted', 'true', { maxAge: 365 * 24 * 60 * 60 * 1000 }); // Cookie for 1 year
+        res.render('add-quote', {
+            error: null,
+            success: `Quote submitted successfully! Tracking Number: ${trackingNumber}`
+        });
+    } catch (err) {
+        console.error(err);
+        res.render('add-quote', {
+            error: 'Error creating quote. Try again.',
+            success: null
+        });
+    }
+});
+
+// Update validation function to include only Tracking schema fields
+function validateQuoteForm({ name, email, phone, productName, origin, destination, quantity, weight, width, height }) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return (
+        name && name.trim() &&
+        email && emailRegex.test(email) &&
+        phone && phone.trim() &&
+        productName && productName.trim() &&
+        origin && origin.trim() &&
+        destination && destination.trim() &&
+        quantity && quantity.trim() &&
+        weight && weight.trim() &&
+        width && width.trim() &&
+        height && height.trim()
+    );
+}
+
+app.get('/siteOwnerLink/add-quote', (req, res) => {
+    res.render('add-quote', {
+        error: null,
+        success: null
+    });
+});
+
 // Routes
 // Home Page with Quote and Contact Forms
 app.get('/', (req, res) => {

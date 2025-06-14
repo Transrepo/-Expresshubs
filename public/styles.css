@@ -202,3 +202,18 @@ a:hover {
     margin: 5px 0;
     font-size: 14px;
 }
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #1a73e8;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #1557b0;
+}
